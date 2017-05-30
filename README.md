@@ -335,7 +335,5 @@ For more information please read here: http://www.virtu-al.net/vcheck-pluginshea
 
 For an example HorizonView output (doesnt contain all info) click here http://virtu-al.net/Downloads/vCheck/vCheck.htm
 =======
-<p align="center">
-  <img src="https://github.com/vCheckReport/vCheck-HorizonView/blob/master/Content/VMWare-Horizon-Icon.png"/>
-</p>
+
 
