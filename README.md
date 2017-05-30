@@ -71,19 +71,22 @@ For each check that's written, here's a brief description of what it does.
 # Installing
 [*Back to top*](#Title)
 
-For general guidance on the use of [vCheck-vSphere](https://github.com/alanrenouf/vCheck-vSphere) please see the README file hosted there.
 
-Copy the vCheck folder to the desired location, note the content structure, in particular the Plugins folder.
+Download this project and copy the vCheck folder to the desired location, note the content structure, in particular the Plugins folder.
+
 Before you can use vCheck-HorizonView, you need to create an HorizonView password txt file AND a HorizonView Eventdatabase password file.
 
->Use the following to create a password txt file
+Use the following to create a password txt file
 
->`Read-Host -AsSecureString | ConvertFrom-SecureString | Out-File 'hvcs_Credentials.txt'`
->`Read-Host -AsSecureString | ConvertFrom-SecureString | Out-File 'hvedb_Credentials.txt'`
-these need to be created where the script runs.
+  ```
+  Read-Host -AsSecureString | ConvertFrom-SecureString | Out-File 'hvcs_Credentials.txt'
+  Read-Host -AsSecureString | ConvertFrom-SecureString | Out-File 'hvedb_Credentials.txt'
+  ```
+
+These files will need to be created where the script runs.
+
 Also in the connection plugin the Connection server, username and domainname need to be set. 
 The username used for the eventdatabase is the one actually configured in your Horizon View environment.
-
 
 
 Once the files are in the correct location and the credentials XML file has been created, you need to start the installer.
@@ -120,15 +123,17 @@ See out [Contributions](CONTRIBUTING.md) guidelines
 [*Back to top*](#Title)
 
 ## Suggested Plugins for Development ##
-*Dashboard error status 
-*Desktops with error (non-standard) status
-*Compare the Snapshots that have been set to the ones actually used on desktops to see if recompose might not have run
-*relation between Composer and vCenter 
-*last use time for dedicated desktops 
-*Event Database status
-*Connection,composer,security server status
-*Information and status about the various desktop pool types
-*RDS farm status
+
+* Dashboard error status 
+* Desktops with error (non-standard) status
+* Compare the Snapshots that have been set to the ones actually used on desktops to see if recompose might not have run
+* relation between Composer and vCenter 
+* last use time for dedicated desktops 
+* Event Database status
+* Connection,composer,security server status
+* Information and status about the various desktop pool types
+* RDS farm status
+
 
 Some of the above suggestions might have been taken from a [VMTN post](https://communities.vmware.com/message/2673396)
 
