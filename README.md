@@ -334,6 +334,4 @@ If new settings or plugins have been added to the new build you will be asked to
 For more information please read here: http://www.virtu-al.net/vcheck-pluginsheaders/vcheck/
 
 For an example HorizonView output (doesnt contain all info) click here http://virtu-al.net/Downloads/vCheck/vCheck.htm
-=======
-
 
