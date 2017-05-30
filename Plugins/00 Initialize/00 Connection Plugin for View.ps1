@@ -8,15 +8,15 @@ $PluginCategory = "View"
 
 # Start of Settings
 # Please Specify the address of one of the connection servers or the address for the general View environment
-$Server = "acccbr01.corp.accsligro.nl"
+
+$Server = "Servername"
 # Maximum number of samples to gather for events
 $MaxSampleVIEvent = 100000
 # Please give the user account to connect to Connection Server
-$hvcsUser= "b_kurstenw"															
+$hvcsUser= "username"															
 # Please give the domain for the user to connect to Connection Server
-$hvcsDomain = "accsligro"														
+$hvcsDomain = "domain"														
 
-# End of Settings
 
 
 
