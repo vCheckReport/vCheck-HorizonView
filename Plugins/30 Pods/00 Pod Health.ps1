@@ -1,6 +1,6 @@
 # Start of Settings
 # End of Settings
-$pods=$services1.pod.pod_list() | where {$_. localpod -eq $false}
+$pods=$services1.pod.pod_list() | where {$_.localpod -eq $false}
 $podhealth=@()
 foreach ($pod in $pods) {
 	$endpoints=$services1.podhealth.podhealth_get($pod.id).data.endpointhealth
@@ -21,5 +21,5 @@ $Header = "VDI Remote Pod Health"
 $Comments = "This is the check to see if all Pod Communications are ok"
 $Display = "Table"
 $Author = "Wouter Kursten"
-$PluginVersion = 0.1
+$PluginVersion = 0.1.1
 $PluginCategory = "View"
