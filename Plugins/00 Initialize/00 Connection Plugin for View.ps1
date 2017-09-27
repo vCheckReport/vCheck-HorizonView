@@ -39,5 +39,5 @@ $Services1= $hvServer1.ExtensionData
 #$eventdb=connect-hvevent -dbpassword $hvedbpassword
 
 # --- Get Desktop pools
-$pools=get-hvpool | sort {$_.base.name}
+$pools=get-hvpool | sort-object {$_.base.name}
 
