@@ -5,7 +5,7 @@ $fulldesktopassignment=@()
 foreach ($pool in $pools){
 $poolname=$pool.base.name
 if ($pool.type -like "*automated*" -AND $pool.source -like "*VIRTUAL_CENTER*"){
-	$desktops=get-hvmachinesummary -pool $poolname
+	$desktops=get-hvmachinesummary -pool $poolname -ErrorAction:SilentlyContinue
 	foreach ($desktop in $desktops){
 	if ($desktop.namesdata.username){
 		$username=$desktop.namesdata.username

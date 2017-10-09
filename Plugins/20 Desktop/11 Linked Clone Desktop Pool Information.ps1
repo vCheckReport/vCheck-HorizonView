@@ -5,7 +5,7 @@ $automatedpoolstatus=@()
 foreach ($pool in $pools){
 $poolname=$pool.base.name
 if ($pool.type -like "*automated*" -AND $pool.source -like "*VIEW_COMPOSER*"){
-$desktops=get-hvmachinesummary -pool $poolname
+$desktops=get-hvmachinesummary -pool $poolname -ErrorAction:SilentlyContinue
 $automatedpoolstatus+=New-Object PSObject -Property @{"Name" = $Poolname;
 								"Pool_Image" = $pool.automateddesktopdata.VirtualCenternamesdata.parentvmpath;
 								"Pool_Snapshot" = $pool.automateddesktopdata.VirtualCenternamesdata.snapshotpath;
@@ -29,6 +29,6 @@ $Title = "Linked Clone Desktop Pool Status"
 $Header = "Linked Clone Desktop Pool Status"
 $Comments = "These are the pools that have floating linked clones. Not all but the most common status's are counted."
 $Display = "Table"
-$Author = "Wouter Kursten"
-$PluginVersion = 0.1
+$Author = "Hackathon Team 1"
+$PluginVersion = 0.2
 $PluginCategory = "View"

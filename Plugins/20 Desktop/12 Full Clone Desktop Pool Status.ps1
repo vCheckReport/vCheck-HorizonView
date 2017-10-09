@@ -5,7 +5,7 @@ $fullpoolstatus=@()
 foreach ($pool in $pools){
 $poolname=$pool.base.name
 if ($pool.type -like "*automated*" -AND $pool.source -like "*VIRTUAL_CENTER*"){
-$desktops=get-hvmachinesummary -pool $poolname
+$desktops=get-hvmachinesummary -pool $poolname -ErrorAction:SilentlyContinue
 $fullpoolstatus+=New-Object PSObject -Property @{"Name" = $Poolname;
 								"Template" = $pool.AutomatedDesktopData.VirtualCenterNamesData.TemplatePath;
 								"Desktop_Count" = ($desktops).count;
