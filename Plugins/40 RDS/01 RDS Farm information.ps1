@@ -6,6 +6,7 @@ $Farmoverview=@()
 
 foreach ($farm in $farms){
 	$farmstatus=$farm.data.Enabled 
+	
 	$ProvisioningStatus=$farm.AutomatedFarmData.VirtualCenterProvisioningSettings.enableprovisioning
 	$source=$farm.source
 	$type=$farm.type
@@ -29,15 +30,15 @@ foreach ($farm in $farms){
 			}
 
 		$farmoverview+=New-Object PSObject -Property @{
-			"Name" = $farm.base.name;
-			"Displayname" = $farm.base.DisplayName;
-			"Description" = $farm.base.Description;
-#			"Status" = $farmstatusoutput;
+			"Name" = $farm.data.name;
+			"Displayname" = $farm.data.DisplayName;
+			"Description" = $farm.data.Description;
+			"Status" = $farmstatusoutput;
 			"Provisioning" = $ProvisioningStatusoutput;
 			"Type" = $farm.type;
 			"Source" = $sourceoutput;
-			"Max_Host_Sessions"=$farm.automatedfarmdata.rdsservermaxsessions.maxsessions;
-			"Max_Host_Session_Type"=$farm.automatedfarmdata.rdsservermaxsessions.maxsessionstype
+			"Max_Host_Sessions"=$farm.AutomatedFarmData.RdsServerMaxSessionsData.maxsessions;
+			"Max_Host_Session_Type"=$farm.AutomatedFarmData.RdsServerMaxSessionsData.maxsessionstype;
 			}
 		}
 
@@ -49,12 +50,12 @@ foreach ($farm in $farms){
 		"Status" = $farmstatusoutput;
 		"Provisioning" = $ProvisioningStatusoutput;
 		"Type" = $farm.type;
-		"Max_Host_Sessions"=$farm.automatedfarmdata.rdsservermaxsessions.maxsessions;
-		"Max_Host_Session_Type"=$farm.automatedfarmdata.rdsservermaxsessions.maxsessionstype
+		"Max_Host_Sessions"=$farm.AutomatedFarmData.RdsServerMaxSessionsData.maxsessions;
+		"Max_Host_Session_Type"=$farm.AutomatedFarmData.RdsServerMaxSessionsData.maxsessionstype;
 		}
 	}	
 }
-$farmoverview | select-object Name,Displayname,Description,Status,Provisioning,Type,Source,Max_Host_Session_Type,Max_Host_Session
+$farmoverview | select-object Name,Displayname,Description,Status,Provisioning,Type,Source,Max_Host_Session_Type,Max_Host_Sessions
 
 $Title = "RDS Farm Overview"
 $Header = "RDS Farm Overview"
