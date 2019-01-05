@@ -1,6 +1,6 @@
 $Title = "Connection settings for View"
 $Author = "Wouter Kursten"
-$PluginVersion = 0.1
+$PluginVersion = 0.2
 $Header = "Connection Settings"
 $Comments = "Connection Plugin for connecting to View"
 $Display = "None"
@@ -22,8 +22,11 @@ $hvcsDomain = "domain"
 
 # Credential file for the user to connect to the Connection Server
 $hvcsPassword = get-content .\hvcs_Credentials.txt | convertto-securestring		
+
+
 # Credential file for the User configured n View to connect to the Database
-$hvedbpassword=get-content .\hvedb_Credentials.txt | convertto-securestring   	
+# only to be used pre-horizon 7.3
+# $hvedbpassword=get-content .\hvedb_Credentials.txt | convertto-securestring   	
 
 # Loading 
 Import-Module VMware.VimAutomation.HorizonView
@@ -35,9 +38,19 @@ $hvServer1 = Connect-HVServer -Server $server -User $hvcsUser -Password $hvcsPas
 # --- Get Services for interacting with the View API Service ---
 $Services1= $hvServer1.ExtensionData
 
-# --- Connect to the view events database ---
-#$eventdb=connect-hvevent -dbpassword $hvedbpassword
+
 
 # --- Get Desktop pools
-$pools=get-hvpool | sort-object {$_.base.name}
+$poolqueryservice=new-object vmware.hv.queryserviceservice
+$pooldefn = New-Object VMware.Hv.QueryDefinition
+$pooldefn.queryentitytype='DesktopSummaryView'
+$poolqueryResults = $poolqueryService.QueryService_Create($Services1, $pooldefn)
+$pools = foreach ($poolresult in $poolqueryResults.results){$services1.desktop.desktop_get($poolresult.id)}
 
+# --- Get RDS Farms
+
+$Farmqueryservice=new-object vmware.hv.queryserviceservice
+$Farmdefn = New-Object VMware.Hv.QueryDefinition
+$Farmdefn.queryentitytype='FarmSummaryView'
+$FarmqueryResults = $FarmqueryService.QueryService_Create($Services1, $Farmdefn)
+$farms = foreach ($farmresult in $farmqueryResults.results){$services1.farm.farm_get($farmresult.id)}
