@@ -20,6 +20,7 @@ foreach ($pool in $pools){
 			"Agent_Unreachable" = ($desktops | where {$_.base.basicstate -eq "AGENT_UNREACHABLE"}).count;
 			"Error" = ($desktops | where {$_.base.basicstate -eq "ERROR"}).count;
 		}
+		$services1.QueryService.QueryService_DeleteAll()
 	}
 }
 

@@ -22,6 +22,7 @@ foreach ($pool in $pools){
 				"Pool Snapshot" = $pool.automateddesktopdata.VirtualCenternamesdata.snapshotpath;
 				"Pool GI" = $pool.automateddesktopdata.VirtualCenternamesdata.parentvmpath;
 			}
+		$services1.QueryService.QueryService_DeleteAll()
 		}
 	}
 }

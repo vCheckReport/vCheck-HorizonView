@@ -28,6 +28,7 @@ foreach ($pool in $pools){
 			"Deleting" = ($desktops | where {$_.base.basicstate -eq "DELETING"}).count;
 			"Provisioning_Error" = ($desktops | where {$_.base.basicstate -eq "PROVISIONING_ERROR"}).count;
 		}
+		$services1.QueryService.QueryService_DeleteAll()	
 	}
 }
 

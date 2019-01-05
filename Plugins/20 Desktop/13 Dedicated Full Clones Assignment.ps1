@@ -28,6 +28,7 @@ foreach ($pool in $pools){
 				"Host" = $desktop.managedmachinesdata.hostname;
 				"Datastore" = $desktop.ManagedMachineNamesData.datastorepaths | out-string;
 			}
+		$services1.QueryService.QueryService_DeleteAll()
 		}
 	}
 }
