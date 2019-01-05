@@ -41,6 +41,7 @@ foreach ($pool in $pools){
 			$FALSE {$Automaticassignmentoutput="Manual"}
 			default {$Automaticassignmentoutput="No Assignment Status Available"}
 		}
+		
 		$Pooloverview+=New-Object PSObject -Property @{"Name" = $pool.base.name;
 			"Displayname" = $pool.base.DisplayName;
 			"Description" = $pool.base.Description;
