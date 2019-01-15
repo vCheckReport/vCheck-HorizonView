@@ -22,7 +22,7 @@ foreach ($VirtualCenterHealth in $VirtualCenterHealthlist){
 	}
 }
 
-$VirtualCenterHealthoverview | select-object netBiosName,dnsName,nt4Domain,Connectionserver,Status,trustRelationship,contactable
+$VirtualCenterHealthoverview | select-object name,version,build,apiVersion,Connectionserver,Status,thumbprintAccepted,certificateHealth
 
 $Title = "vCenter Health Overview"
 $Header = "vCenter Health Overview"

@@ -6,7 +6,12 @@ $VirtualCenterHealthlist=$services1.VirtualCenterHealth.VirtualCenterHealth_list
 foreach ($VirtualCenterHealth in $VirtualCenterHealthlist){
 	$Name=$VirtualCenterHealth.data.name
 	foreach ($ESXiHost in $VirtualCenterHealthlist.hostData){
-		$vGPUTypes= [system.String]::Join(",", $ESXiHost.vGPUTypes)
+		if ($esxihost.vGPUTypes){
+			$vGPUTypes= [system.String]::Join(",", $ESXiHost.vGPUTypes)
+		}
+		else{
+			$vGPUTypes="n/a"
+		}
 		$ESXiHealthoverview+=New-Object PSObject -Property @{
 		"Name" = $Name;
 		"ESXi_Host" = $ESXiHost.name;

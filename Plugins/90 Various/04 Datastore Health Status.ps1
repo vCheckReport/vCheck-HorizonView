@@ -8,12 +8,12 @@ foreach ($VirtualCenterHealth in $VirtualCenterHealthlist){
 	foreach ($Datastore in $VirtualCenterHealthlist.datastoreData){
 		$DatastoreHealthoverview+=New-Object PSObject -Property @{
 		"Name" = $Name;
-		"Datastore" = $ESXiHost.name;
-		"accessible" = $ESXiHost.accessible;
-		"path" = $ESXiHost.path;
-		"datastoreType" = $ESXiHost.datastoreType;
-		"capacityMB" = $ESXiHost.capacityMB;
-		"freeSpaceMB" = $ESXiHost.freeSpaceMB;
+		"Datastore" = $Datastore.name;
+		"accessible" = $Datastore.accessible;
+		"path" = $Datastore.path;
+		"datastoreType" = $Datastore.datastoreType;
+		"capacityMB" = $Datastore.capacityMB;
+		"freeSpaceMB" = $Datastore.freeSpaceMB;
 		}
 	}
 }
