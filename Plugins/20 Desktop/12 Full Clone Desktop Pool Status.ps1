@@ -8,7 +8,7 @@ foreach ($pool in $pools){
 		$queryservice=new-object vmware.hv.queryserviceservice
 		$defn = New-Object VMware.Hv.QueryDefinition
 		$defn.queryentitytype='MachineSummaryView'
-		$filter = New-Object VMware.Hv.QueryFilterEquals -Property @{ 'memberName' = 'base.name'; 'value' = "$pool.base.name" }
+		$defn.filter=New-Object VMware.Hv.QueryFilterEquals -property @{'memberName'='base.desktop'; 'value'=$pool.id}
 		$queryResults = $queryService.QueryService_Create($Services1, $defn)
 		$desktops=$queryResults.results
 		$fullpoolstatus+=New-Object PSObject -Property @{
