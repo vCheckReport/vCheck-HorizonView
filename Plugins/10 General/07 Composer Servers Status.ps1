@@ -21,6 +21,7 @@ $comserverstatus+=New-Object PSObject -Property @{"Name" = $comserver.ServerName
 								"vCenter_Server"= $vcenternames
 								
 }
+$vcenternames=$null
 }
 $comserverstatus | select name,Version,Build,vcenter_server
 
