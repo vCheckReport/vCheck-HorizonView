@@ -7,7 +7,7 @@ foreach ($ADDomainHealth in $ADDomainHealthlist){
 	$netBiosName=$ADDomainHealth.netBiosName
 	$dnsName=$ADDomainHealth.dnsName
 	$nt4Domain=$ADDomainHealth.nt4Domain
-	foreach ($Connectionserver in $ADDomainHealthlist.connectionServerState){
+	foreach ($Connectionserver in $ADDomainHealth.connectionServerState){
 		$ADDomainHealthoverview+=New-Object PSObject -Property @{
 		"netBiosName" = $netBiosName;
 		"dnsName"=$dnsName;
