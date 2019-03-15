@@ -8,7 +8,7 @@ foreach ($VirtualCenterHealth in $VirtualCenterHealthlist){
 	$version=$VirtualCenterHealth.data.version
 	$build=$VirtualCenterHealth.data.build
 	$apiVersion=$VirtualCenterHealth.data.apiVersion
-	foreach ($Connectionserver in $VirtualCenterHealthlist.connectionServerData){
+	foreach ($Connectionserver in $VirtualCenterHealth.connectionServerData){
 		$VirtualCenterHealthoverview+=New-Object PSObject -Property @{
 		"name" = $Name;
 		"version"=$version;
