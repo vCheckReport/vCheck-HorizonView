@@ -13,7 +13,7 @@ foreach ($pool in $pools){
 		$defn.filter = New-Object VMware.Hv.QueryFilterEquals -Property @{ 'memberName' = 'base.name'; 'value' = "$pool.base.name" }
 	
 		$queryResults = $queryService.QueryService_Create($Services1, $defn)
-		$poolmachines=$queryResults.results
+		$poolmachines=$services1.machine.machine_getinfos($queryResults.results.id)
 		$wrongsnaps=$poolmachines | where {$_.managedmachinedata.viewcomposerdata.baseimagesnapshotpath -notlike  $pool.automateddesktopdata.VirtualCenternamesdata.snapshotpath -OR $_.managedmachinedata.viewcomposerdata.baseimagepath -notlike $pool.automateddesktopdata.VirtualCenternamesdata.parentvmpath}
 		foreach ($wrongsnap in $wrongsnaps){
 			$wrongsnapdesktops+= New-Object PSObject -Property @{

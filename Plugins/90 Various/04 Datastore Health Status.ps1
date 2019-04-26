@@ -5,7 +5,7 @@ $DatastoreHealthoverview=@()
 $VirtualCenterHealthlist=$services1.VirtualCenterHealth.VirtualCenterHealth_list()
 foreach ($VirtualCenterHealth in $VirtualCenterHealthlist){
 	$Name=$VirtualCenterHealth.data.name
-	foreach ($Datastore in $VirtualCenterHealthlist.datastoreData){
+	foreach ($Datastore in $VirtualCenterHealth.datastoreData){
 		$DatastoreHealthoverview+=New-Object PSObject -Property @{
 		"Name" = $Name;
 		"Datastore" = $Datastore.name;

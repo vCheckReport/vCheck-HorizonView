@@ -5,7 +5,7 @@ $ESXiHealthoverview=@()
 $VirtualCenterHealthlist=$services1.VirtualCenterHealth.VirtualCenterHealth_list()
 foreach ($VirtualCenterHealth in $VirtualCenterHealthlist){
 	$Name=$VirtualCenterHealth.data.name
-	foreach ($ESXiHost in $VirtualCenterHealthlist.hostData){
+	foreach ($ESXiHost in $VirtualCenterHealth.hostData){
 		if ($esxihost.vGPUTypes){
 			$vGPUTypes= [system.String]::Join(",", $ESXiHost.vGPUTypes)
 		}
