@@ -7,11 +7,11 @@ foreach ($pool in $pools){
 	$poolname=$pool.base.name
 
 	if ($pool.type -like "*automated*"){
+		$PoolID=($pool).id
 		$queryservice=new-object vmware.hv.queryserviceservice
 		$defn = New-Object VMware.Hv.QueryDefinition
 		$defn.queryentitytype='MachineSummaryView'
-		$defn.filter = New-Object VMware.Hv.QueryFilterEquals -Property @{ 'memberName' = 'base.desktop'; 'value' = "$pool.id" }
-	
+		$defn.filter = New-Object VMware.Hv.QueryFilterEquals -Property @{ 'memberName' = 'base.desktop'; 'value' = $PoolID }
 		$queryResults = $queryService.QueryService_Create($Services1, $defn)
 		$poolmachines=$services1.machine.machine_getinfos($queryResults.results.id)
 		$wrongsnaps=$poolmachines | where {$_.managedmachinedata.viewcomposerdata.baseimagesnapshotpath -notlike  $pool.automateddesktopdata.VirtualCenternamesdata.snapshotpath -OR $_.managedmachinedata.viewcomposerdata.baseimagepath -notlike $pool.automateddesktopdata.VirtualCenternamesdata.parentvmpath}
@@ -37,5 +37,5 @@ $Header = "VDI Desktops based on wrong snapshot"
 $Comments = "These desktops have not been recomposed with the correct Golden Image Snapshot"
 $Display = "Table"
 $Author = "Wouter Kursten"
-$PluginVersion = 0.3
+$PluginVersion = 0.4
 $PluginCategory = "View"
