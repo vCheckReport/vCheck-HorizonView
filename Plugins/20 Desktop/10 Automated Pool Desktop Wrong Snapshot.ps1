@@ -11,7 +11,9 @@ foreach ($pool in $pools){
 		$queryservice=new-object vmware.hv.queryserviceservice
 		$defn = New-Object VMware.Hv.QueryDefinition
 		$defn.queryentitytype='MachineSummaryView'
-		$defn.filter = New-Object VMware.Hv.QueryFilterEquals -Property @{ 'memberName' = 'base.desktop'; 'value' = $PoolID }
+
+		$defn.filter = New-Object VMware.Hv.QueryFilterEquals -Property @{ 'memberName' = 'base.desktop'; 'value' = $pool.id }
+
 		$queryResults = $queryService.QueryService_Create($Services1, $defn)
 		$poolmachines=$services1.machine.machine_getinfos($queryResults.results.id)
 		$wrongsnaps=$poolmachines | where {$_.managedmachinedata.viewcomposerdata.baseimagesnapshotpath -notlike  $pool.automateddesktopdata.VirtualCenternamesdata.snapshotpath -OR $_.managedmachinedata.viewcomposerdata.baseimagepath -notlike $pool.automateddesktopdata.VirtualCenternamesdata.parentvmpath}
