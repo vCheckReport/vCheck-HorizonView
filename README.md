@@ -73,16 +73,16 @@ For each check that's written, here's a brief description of what it does.
 
 Download this project and copy the vCheck folder to the desired location, note the content structure, in particular the Plugins folder.
 
-Before you can use vCheck-HorizonView, you need to create an HorizonView password txt file AND a HorizonView Eventdatabase password file.
+Before you can use vCheck-HorizonView, you need to create an HorizonView password txt file.
 
 Use the following to create a password txt file
 
   ```
   Read-Host -AsSecureString | ConvertFrom-SecureString | Out-File 'hvcs_Credentials.txt'
-  Read-Host -AsSecureString | ConvertFrom-SecureString | Out-File 'hvedb_Credentials.txt'
+
   ```
 
-These files will need to be created where the script runs.
+This file will need to be created where the script runs.
 
 Also in the connection plugin the Connection server, username and domainname need to be set. 
 The username used for the eventdatabase is the one actually configured in your Horizon View environment.
