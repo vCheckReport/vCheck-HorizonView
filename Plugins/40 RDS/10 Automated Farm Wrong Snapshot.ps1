@@ -16,21 +16,23 @@ foreach ($farm in $farms){
 
 		$queryResults = $queryService.QueryService_Create($Services1, $defn)
         #$farmmachines=$services1.machine.machine_getinfos($queryResults.results.id)
-        $farmmachines=$queryResults.Results
-		$wrongsnaps=$farmmachines | where {$_.rdsservermaintenancedata.baseimagesnapshotpath -notlike  $farm.automatedfarmdata.VirtualCenternamesdata.snapshotpath -OR $_.rdsservermaintenancedata.baseimagepath -notlike $farm.automatedfarmdata.VirtualCenternamesdata.parentvmpath}
-		if ($wrongsnaps){
-			foreach ($wrongsnap in $wrongsnaps){
-				$wrongsnapdesktops+= New-Object PSObject -Property @{
-					"RDS Name" = $wrongsnap.base.name;
-					"VM Snapshot" = $wrongsnap.rdsservermaintenancedata.baseimagesnapshotpath;
-					"VM GI" = $wrongsnap.rdsservermaintenancedata.baseimagepath;
-					"Farm Snapshot" = $farm.automatedfarmdata.VirtualCenternamesdata.snapshotpath;
-					"Farm GI" = $farm.automatedfarmdata.VirtualCenternamesdata.parentvmpath;
+		$farmmachines=$queryResults.Results
+		if ($farmmachines.count -ge 1){
+			$wrongsnaps=$farmmachines | where {$_.rdsservermaintenancedata.baseimagesnapshotpath -notlike  $farm.automatedfarmdata.VirtualCenternamesdata.snapshotpath -OR $_.rdsservermaintenancedata.baseimagepath -notlike $farm.automatedfarmdata.VirtualCenternamesdata.parentvmpath}
+			if ($wrongsnaps){
+				foreach ($wrongsnap in $wrongsnaps){
+					$wrongsnapdesktops+= New-Object PSObject -Property @{
+						"RDS Name" = $wrongsnap.base.name;
+						"VM Snapshot" = $wrongsnap.rdsservermaintenancedata.baseimagesnapshotpath;
+						"VM GI" = $wrongsnap.rdsservermaintenancedata.baseimagepath;
+						"Farm Snapshot" = $farm.automatedfarmdata.VirtualCenternamesdata.snapshotpath;
+						"Farm GI" = $farm.automatedfarmdata.VirtualCenternamesdata.parentvmpath;
+					}
 				}
+			
 			}
-		
+			$services1.QueryService.QueryService_DeleteAll()
 		}
-		$services1.QueryService.QueryService_DeleteAll()
 	}
 }
 $wrongsnapdesktops
