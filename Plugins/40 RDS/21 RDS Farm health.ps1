@@ -9,7 +9,7 @@ foreach ($farm in $farms){
 	$farmhealthstatus=$health.health
 	$farmname=$farm.data.name
 	foreach ($rdsserver in $health.RdsServerHealth){
-		@missingapps=$null
+		$missingapps=$null
 		if ($rdsserver.missingapplications){
 			$missingapps = [system.String]::Join(",", $rdsserver.missingapplications.name)
 		}
