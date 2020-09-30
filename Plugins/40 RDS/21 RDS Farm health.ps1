@@ -9,8 +9,9 @@ foreach ($farm in $farms){
 	$farmhealthstatus=$health.health
 	$farmname=$farm.data.name
 	foreach ($rdsserver in $health.RdsServerHealth){
+		@missingapps=$null
 		if ($rdsserver.missingapplications){
-			$missingapps=$a = [system.String]::Join(",", $rdsserver.missingapplications.name)
+			$missingapps = [system.String]::Join(",", $rdsserver.missingapplications.name)
 		}
 		$farmhealth+=New-Object PSObject -Property @{
 			"FarmName" = $farmname;
