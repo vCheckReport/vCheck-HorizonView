@@ -51,7 +51,7 @@ This script is not to be confused with an Audit script, although the reporting f
 
 <a name="Features">
 
-# What is checked for in the View version ?
+# What is checked for in the Horizon ?
 [*Back to top*](#Title)
 
 The following items are included as part of the vCheck NSX download, they are included as vCheck Plugins and can be removed or altered very easily by editing the specific plugin file which contains the data. vCheck Plugins are found under the Plugins folder.
@@ -59,7 +59,7 @@ The following items are included as part of the vCheck NSX download, they are in
 For each check that's written, here's a brief description of what it does.
 
 ***
-## Connection Plugin for View ##
+## Connection Plugin for Horizon ##
 ### Function ###
 * Uses the hvcs_credentials.txt file to connect to the configured Connection Broker and polls all pools.
 
