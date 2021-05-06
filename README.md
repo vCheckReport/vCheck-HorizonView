@@ -103,8 +103,8 @@ In the meantime, don't hesitate to pop over to the [#vCheck channel on slack](ht
 # Credentials
 [*Back to top*](#Title)
 The credentials file can be created using the following:
-$creds = get-credential
-$creds | export-clixml c:\path\to\credsfile.xml
+* $creds = get-credential
+* $creds | export-clixml c:\path\to\credsfile.xml
 
 # Settings
 [*Back to top*](#Title)
