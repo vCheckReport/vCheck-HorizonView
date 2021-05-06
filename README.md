@@ -100,12 +100,25 @@ Open a PowerCLI window **AS AN ADMINISTRATOR** then run...
 
 In the meantime, don't hesitate to pop over to the [#vCheck channel on slack](https://code.vmware.com/slack/) and join in on active conversations about anything you see- or don't see- here!
 
-<a name="ReleaseNotes">
+# Credentials
+[*Back to top*](#Title)
+The credentials file can be created using the following:
+$creds = get-credential
+$creds | export-clixml c:\path\to\credsfile.xml
 
-# Release Notes
+# Settings
 [*Back to top*](#Title)
 
-* 0.1 - This is where it began
+edit the 00 Initialize\00 Connection Plugin for View.ps1 file with the following
+* $server = connectionserver.fqdn.com
+* $credfile = c:\path\to\credsfile.xml
+
+<a name="ReleaseNotes">
+
+# Changelog
+[*Back to top*](#Title)
+
+* 06-05-2021 - replaced the password only credentials file with a credetials file holding both username and password
 
 
 <a name="Contributing">
