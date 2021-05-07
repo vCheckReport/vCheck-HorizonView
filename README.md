@@ -51,7 +51,7 @@ This script is not to be confused with an Audit script, although the reporting f
 
 <a name="Features">
 
-# What is checked for in the View version ?
+# What is checked for in the Horizon ?
 [*Back to top*](#Title)
 
 The following items are included as part of the vCheck NSX download, they are included as vCheck Plugins and can be removed or altered very easily by editing the specific plugin file which contains the data. vCheck Plugins are found under the Plugins folder.
@@ -59,7 +59,7 @@ The following items are included as part of the vCheck NSX download, they are in
 For each check that's written, here's a brief description of what it does.
 
 ***
-## Connection Plugin for View ##
+## Connection Plugin for Horizon ##
 ### Function ###
 * Uses the hvcs_credentials.txt file to connect to the configured Connection Broker and polls all pools.
 
@@ -100,12 +100,25 @@ Open a PowerCLI window **AS AN ADMINISTRATOR** then run...
 
 In the meantime, don't hesitate to pop over to the [#vCheck channel on slack](https://code.vmware.com/slack/) and join in on active conversations about anything you see- or don't see- here!
 
-<a name="ReleaseNotes">
+# Credentials
+[*Back to top*](#Title)
+The credentials file can be created using the following:
+* $creds = get-credential
+* $creds | export-clixml c:\path\to\credsfile.xml
 
-# Release Notes
+# Settings
 [*Back to top*](#Title)
 
-* 0.1 - This is where it began
+edit the 00 Initialize\00 Connection Plugin for View.ps1 file with the following
+* $server = connectionserver.fqdn.com
+* $credfile = c:\path\to\credsfile.xml
+
+<a name="ReleaseNotes">
+
+# Changelog
+[*Back to top*](#Title)
+
+* 06-05-2021 - replaced the password only credentials file with a credetials file holding both username and password
 
 
 <a name="Contributing">
