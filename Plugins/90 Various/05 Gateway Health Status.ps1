@@ -56,6 +56,7 @@ $uaghealthstatuslist=@()
 [array]$uaglist=$services1.Gateway.Gateway_List()
 foreach ($uag in $uaglist){
     [VMware.Hv.GatewayHealthInfo]$uaghealth=$services1.GatewayHealth.GatewayHealth_Get($uag.id)
+    $lastcontact = (([System.DateTimeOffset]::FromUnixTimeMilliSeconds(($uaghealth.LastUpdatedTimestamp)).DateTime).ToString("s"))
     $uaghealthstatuslist+=New-Object PSObject -Property @{
         "Podname" = $podname;
         "Gateway_Name" = $uaghealth.name;
@@ -69,11 +70,12 @@ foreach ($uag in $uaglist){
         "Gateway_Active_Connections" = $uaghealth.ConnectionData.NumActiveConnections;
         "Gateway_Blast_Connections" = $uaghealth.ConnectionData.NumBlastConnections;
         "Gateway_PCOIP_Connections" = $uaghealth.ConnectionData.NumPcoipConnections;
+        "Gateway_Last_Contact" = $lastcontact;
     }
 }
 
 
-$uaghealthstatuslist | select-object Podname,Gateway_Name,Gateway_Address,Gateway_GatewayZone,Gateway_Version,Gateway_Type,Gateway_Active,Gateway_Stale,Gateway_Contacted,Gateway_Active_Connections,Gateway_Blast_Connections,Gateway_PCOIP_Connections | sort-object Gateway_Name
+$uaghealthstatuslist | select-object Podname,Gateway_Name,Gateway_Address,Gateway_GatewayZone,Gateway_Version,Gateway_Type,Gateway_Active,Gateway_Stale,Gateway_Contacted,Gateway_Active_Connections,Gateway_Blast_Connections,Gateway_PCOIP_Connections,Gateway_Last_Contact | sort-object Gateway_Name
 
 $Title = "Gateway Health Overview"
 $Header = "Gateway Health Overview"
